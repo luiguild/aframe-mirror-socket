@@ -26,7 +26,7 @@
 
     socket.on('positionDesktop', data => {
         // console.log('New position on Card Board!', data)
-        entityEl.setAttribute('position', {x: data.x * -1, y: data.y * -1})
+        entityEl.setAttribute('position', {x: data.x, y: data.y})
     })
     //
     // window.addEventListener('devicemotion', event => {
