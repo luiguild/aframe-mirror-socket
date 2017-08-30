@@ -9,6 +9,8 @@
 <body>
     <a-scene>
         <a-entity>
+            <a-camera></a-camera>
+            <!-- <a-sky src="puydesancy.jpg" rotation="0 -130 0"></a-sky> -->
             <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
             <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
             <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
@@ -21,12 +23,19 @@
     // const position = document.getElementById('position')
     // // position.innerHTML = 'X, Y, Z'
 
-    const entityEl = document.querySelector('a-entity')
+    const entityEl = document.querySelector('a-camera')
+    // entityEl.setAttribute('look-controls', 'false')
     const socket = io.connect('http://127.0.0.1:3000') // eslint-disable-line
 
     socket.on('positionDesktop', data => {
+        // console.log(data)
         // console.log('New position on Card Board!', data)
-        entityEl.setAttribute('position', {x: data.x, y: data.y})
+        entityEl.setAttribute('position', {x: data.position.x, y: data.position.y})
+        entityEl.setAttribute('rotation', {x: data.rotation.x, y: data.rotation.y})
+        // entityEl.object3D.rotation = data.rotation
+        // console.log(entityEl.object3D.rotation)
+        // entityEl.object3D.position = data.position
+        // console.log(entityEl.object3D.position)
     })
     //
     // window.addEventListener('devicemotion', event => {

@@ -15,9 +15,8 @@ io.on('connection', socket => {
         console.log('New position on Card Board!', data)
 
         io.sockets.emit('positionDesktop', {
-            x: data.x,
-            y: data.y,
-            z: data.z
+            position: data.position,
+            rotation: data.rotation
         })
     })
 })
