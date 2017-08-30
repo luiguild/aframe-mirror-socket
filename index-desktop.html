@@ -7,7 +7,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 </head>
 <body>
-    <div id="position"></div>
     <a-scene>
         <a-entity>
             <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
@@ -22,35 +21,19 @@
     // const position = document.getElementById('position')
     // // position.innerHTML = 'X, Y, Z'
 
-    // const entityEl = document.querySelector('a-entity')
-    const socket = io.connect('http://192.168.0.101:3000') // eslint-disable-line
-    socket.emit('positionCardBoard', {
-        x: 0,
-        y: 0
+    const entityEl = document.querySelector('a-entity')
+    const socket = io.connect('http://127.0.0.1:3000') // eslint-disable-line
+
+    socket.on('positionDesktop', data => {
+        // console.log('New position on Card Board!', data)
+        entityEl.setAttribute('position', {x: data.x * -1, y: data.y * -1})
     })
-    console.log(socket)
-
-    const handleOrientation = event => {
-        // const absolute = event.absolute
-        const alpha = event.alpha
-        const beta = event.beta
-        const gamma = event.gamma
-
-        socket.emit('positionCardBoard', {
-            x: beta,
-            y: gamma,
-            z: alpha
-        })
-    }
-
-    window.addEventListener('deviceorientation', handleOrientation, true)
-
+    //
     // window.addEventListener('devicemotion', event => {
     //     // position.innerHTML = `X: ${event.acceleration.x}, Y: ${event.acceleration.y}, Z: ${event.acceleration.z}`
-    //     socket.emit('positionCardBoard', {
+    //     socket.emit('newPosition', {
     //         x: event.acceleration.x,
-    //         y: event.acceleration.y,
-    //         z: event.acceleration.z
+    //         y: event.acceleration.y
     //     })
     //     // entityEl.setAttribute('position', {x: event.acceleration.x, y: event.acceleration.y})
     //     // console.log(event.acceleration.x + ' m/s2');
