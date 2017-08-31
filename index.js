@@ -12,7 +12,9 @@ app.use((req, res, next) => {
 
 io.on('connection', socket => {
     socket.on('positionCardBoard', data => {
-        console.log('New position on Card Board!', data)
+        console.log('New position on Card Board!')
+        console.log('rotation', data.rotation)
+        console.log('position', data.position)
 
         io.sockets.emit('positionDesktop', {
             position: data.position,

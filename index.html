@@ -9,27 +9,17 @@
 <body>
     <div id="position"></div>
     <a-scene>
-        <a-entity>
-            <a-camera></a-camera>
-            <!-- <a-sky src="puydesancy.jpg" rotation="0 -130 0"></a-sky> -->
-            <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-            <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-            <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-            <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-            <a-sky color="#ECECEC"></a-sky>
-        </a-entity>
+        <a-camera></a-camera>
+        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+        <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+        <a-sky color="#ECECEC"></a-sky>
     </a-scene>
 </body>
 <script type="text/javascript">
     const entityEl = document.querySelector('a-camera')
-    // setTimeout(function () {
-    // setInterval(function () {
-    //     console.log('elm', entityEl)
-    //     console.log('position', entityEl.object3D.position)
-    //     console.log('rotation', entityEl.object3D.rotation)
-    //     console.log('scale', entityEl.object3D.scale)
-    // }, 2000)
-    const socket = io.connect('http://192.168.0.101:3000') // eslint-disable-line
+    const socket = io.connect('http://192.168.99.127:3000') // eslint-disable-line
 
     socket.emit('positionCardBoard', {
         x: 0,
@@ -37,22 +27,11 @@
     })
 
     const handleOrientation = event => {
-        // const absolute = event.absolute
-        // const alpha = event.alpha
-        // const beta = event.beta
-        // const gamma = event.gamma
-
+        let rotation = entityEl.getAttribute('rotation')
+        let position = entityEl.getAttribute('position')
+        console.log(rotation)
         socket.emit('positionCardBoard', {
-            rotation: {
-                x: entityEl.object3D.rotation._y,
-                y: entityEl.object3D.rotation._x,
-                z: entityEl.object3D.rotation._z
-            },
-            position: {
-                x: entityEl.object3D.position.x,
-                y: entityEl.object3D.position.y,
-                z: entityEl.object3D.position.z
-            }
+            rotation, position
         })
     }
 
