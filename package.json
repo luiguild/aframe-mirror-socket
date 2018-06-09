@@ -1,5 +1,5 @@
 {
-  "name": "aframe-debugger",
+  "name": "a-mirror",
   "version": "1.0.0",
   "description": "A simple test using aframe, the framework to build WebVR apps",
   "main": "index.js",
@@ -19,17 +19,17 @@
     "socket.io": "^2.0.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/luiguild/aframe-debugger.git"
+    "url": "git+https://github.com/luiguild/a-mirror.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/luiguild/aframe-debugger/issues"
+    "url": "https://github.com/luiguild/a-mirror/issues"
   },
-  "homepage": "https://github.com/luiguild/aframe-debugger#readme"
+  "homepage": "https://github.com/luiguild/a-mirror#readme"
 }

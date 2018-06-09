@@ -2,27 +2,22 @@ require('dotenv').config()
 const app = require('express')()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
-// const fetch = require('node-fetch')
+const port = 8081
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-    next()
+    return next()
 })
 
-io.on('connection', socket => {
-    socket.on('positionCardBoard', data => {
-        console.log('New position on Card Board!')
-        console.log('rotation', data.rotation)
-        console.log('position', data.position)
+io.on('connection', socket =>
+    socket.on('presenter', data => {
+        console.log('data', data)
 
-        io.sockets.emit('positionDesktop', {
-            position: data.position,
-            rotation: data.rotation
-        })
+        return io.sockets.emit('spectator', data)
     })
-})
+)
 
-server.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
-})
+server.listen(port, () =>
+    console.log(`Running on ${port} port :: Let's make AFrame LIVE!`)
+)
