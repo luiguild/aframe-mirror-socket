@@ -1,7 +1,7 @@
 {
-  "name": "a-mirror",
+  "name": "aframe-mirror-socket",
   "version": "1.0.0",
-  "description": "A simple test using aframe, the framework to build WebVR apps",
+  "description": "A-Frame mirroring system",
   "main": "index.js",
   "dependencies": {
     "dotenv": "^4.0.0",
@@ -23,13 +23,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/luiguild/a-mirror.git"
+    "url": "git+https://github.com/luiguild/aframe-mirror-socket.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/luiguild/a-mirror/issues"
+    "url": "https://github.com/luiguild/aframe-mirror-socket/issues"
   },
-  "homepage": "https://github.com/luiguild/a-mirror#readme"
+  "homepage": "https://github.com/luiguild/aframe-mirror-socket#readme"
 }
